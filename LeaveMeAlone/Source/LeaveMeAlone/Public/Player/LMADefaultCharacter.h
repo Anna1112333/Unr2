@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "LMADefaultCharacter.generated.h"
+//#include "GameplayStatics.generated.h"
+
 class UCameraComponent;
 class USpringArmComponent;
 
@@ -16,7 +18,8 @@ private:
 	float YRotation = -75.0f; // отвечает за поворот камеры по оси Y.
 	float ArmLength = 1400.0f; // отвечает за длину штатива.
 	float FOV = 55.0f; // отвечает за поле зрения камеры.
-
+	void MoveForward(float Value);
+	void MoveRight(float Value);
 public:
 	// Sets default values for this character's properties
 	ALMADefaultCharacter();
@@ -39,4 +42,11 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+	UPROPERTY()
+	UDecalComponent* CurrentCursor = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cursor")
+	UMaterialInterface* CursorMaterial = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Cursor")
+	FVector CursorSize = FVector(20.0f, 40.0f, 40.0f);
 };
